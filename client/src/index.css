@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+h1 {
+    font-family: "Playfair Display", serif;
+}
+
+body {
+    font-family: "Titillium Web", sans-serif;
+}
+
+.form-container {
+    max-width: 500px;
+
+}
+
+.form-control:focus {
+    border: none;
+    box-shadow: 0 0px 10px 0px #363836;
+}
+
+.signup-section {
+    box-shadow: 0 0px 10px 0px #363836;
+    max-width: 500px;
+    margin: 0 auto;
+
+}
