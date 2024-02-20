@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import User from '../models/user.model.js';
 const saltRounds = 10;
-export const auth = async (req, res) => {
+export const signup = async (req, res) => {
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;

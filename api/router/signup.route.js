@@ -1,10 +1,10 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
-import { auth } from '../controllers/auth.controller.js'
+import { signup } from '../controllers/signup.controller.js';
 
 
 const router = express.Router();
 
-router.post('/sign-up', auth);
+router.post('/sign-up', signup);
 
 export default router;
