@@ -1,39 +1,32 @@
 import { useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        username: "",
+        email: "",
+        password: "",
+    });
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const handleChange = (e) => {
+    const handleChange = (event) => {
         setFormData({
-            ...formData,
-            [e.target.id]: e.target.value,
+            ...formData, [event.target.id]: event.target.value,
         });
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await fetch('/api/auth/sign-up', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            })
-            const data = await res.json()
+            const res = await axios.post('/api/auth/sign-up', formData);
+            console.log(res.data);
+            res.data.success === false
+                ? (setLoading(false), setError(res.data.message))
+                : (setLoading(() => false), setError(null), navigate('/sign-in'));
 
-            console.log(data);
-            if (data.success === false) {
-                setLoading(false);
-                setError(data.message);
-                return;
-            }
-            setLoading(false);
-            setError(null);
-            navigate('/sign-in');
 
         } catch (error) {
             setLoading(false);

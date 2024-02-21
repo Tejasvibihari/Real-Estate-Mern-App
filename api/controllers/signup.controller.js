@@ -14,7 +14,7 @@ export const signup = async (req, res, next) => {
             password: hash
         })
         await newUser.save()
-        console.log("User saved successfully" + newUser);
+        res.json('Signup successful');
     } catch (error) {
         next(error)
     }
