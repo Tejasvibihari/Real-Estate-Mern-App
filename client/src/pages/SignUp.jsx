@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
-
+import OAuth from '../components/OAuth';
 export default function SignUp() {
     const [formData, setFormData] = useState({
         username: "",
@@ -67,7 +67,7 @@ export default function SignUp() {
                         <button disabled={loading} className="btn btn-primary w-100" type="submit">
                             {loading ? "Please Wait..." : "Create Account"}
                         </button>
-                        <button className='btn btn-danger w-100 mt-3' type="submit">Sign Up With Google</button>
+                        <OAuth />
                     </form>
                     <div className='mt-2'>
                         <span>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStart, signInFailure, signInSuccess } from '../redux/user/userSlice';
+import OAuth from '../components/OAuth';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({
@@ -60,7 +61,7 @@ export default function SignIn() {
             <button disabled={loading} className="btn btn-primary w-100" type="submit">
               {loading ? "Please Wait..." : "Login"}
             </button>
-            <button className='btn btn-danger w-100 mt-3' type="submit">Sign In With Google</button>
+            <OAuth />
           </form>
           <div className='mt-2'>
             <span>
