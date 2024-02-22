@@ -25,31 +25,20 @@ export const signup = async (req, res, next) => {
 }
 
 // SignIn Controller
-
 export const signin = async (req, res, next) => {
-
-    const email = req.body.email;
-    const password = req.body.password;
+    const { email, password } = req.body;
     try {
-        const user = await User.findOne({ email: email });
-        if (user === null) {
-            // console.log('User not found');
-            return next(errorHandler(404, 'User not found'));
-        } else {
-            const hashValidPassword = await bcrypt.compare(password, user.password);
-            if (!hashValidPassword) {
-                //console.log('Invalid Password');
-                return next(errorHandler(404, 'Invalid Password'));
-            }
-            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
-            res.cookie('access_token', token, { httpOnly: true, maxAge: 60 * 60 * 24 * 7 })
-                .status(200)
-                .json(hashValidPassword);
-            // res.json({ token });
-            // console.log(token);
-
-        }
+        const validUser = await User.findOne({ email });
+        if (!validUser) return next(errorHandler(404, 'User not found!'));
+        const validPassword = bcrypt.compare(password, validUser.password);
+        if (!validPassword) return next(errorHandler(401, 'Wrong credentials!'));
+        const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+        const { password: pass, ...rest } = validUser._doc;
+        res
+            .cookie('access_token', token, { httpOnly: true })
+            .status(200)
+            .json(rest);
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
