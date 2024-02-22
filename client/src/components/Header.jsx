@@ -1,7 +1,14 @@
 // import React from 'react'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
+    const { currentUser } = useSelector(state => state.user);
+    // const profileAvatar = (<li className="nav-item">
+    //     <Link to="/profile" className="nav-link"><img src={currentUser.avatar} width="35px" className='rounded'></img></Link></li>)
+    const signButton = (<li className="nav-item">
+        <Link to="/sign-in" className="nav-link">Sign In</Link>
+    </li>)
     return (
         <header>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -22,14 +29,13 @@ export default function Header() {
                             <li className="nav-item">
                                 <a className="nav-link" href="/about">About</a>
                             </li>
-                            <li className="nav-item">
-                                <Link to="/sign-in" className="nav-link">Sign In</Link>
-                            </li>
+                            {currentUser ? (<li className="nav-item">
+                                <Link to="/profile" className="nav-link"><img src={currentUser.avatar} width="35px" className='rounded'></img></Link></li>) : signButton}
                         </ul>
                     </div>
                 </div>
             </nav>
 
-        </header>
+        </header >
     )
 }
