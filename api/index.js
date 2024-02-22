@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './router/user.route.js';
-import authRouter from './router/signup.route.js';
+import authRouter from './router/auth.route.js';
 
 
 const app = express();
