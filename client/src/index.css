@@ -26,3 +26,11 @@ body {
     margin: 0 auto;
 
 }
+
+.profile_img {
+    border-radius: 50%;
+}
+
+.profile_img:hover {
+    cursor: pointer;
+}

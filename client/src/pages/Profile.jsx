@@ -1,19 +1,23 @@
 // import React from 'react'
 import { useSelector } from 'react-redux'
 import Input from '../components/Input'
+import { useRef } from 'react';
 
 
 export default function Profile() {
     const { currentUser } = useSelector(state => state.user)
+    const fileRef = useRef(null);
     return (
 
         <div className="text-center mt-4 ">
             <h1>
                 Profile
             </h1>
-            <img src={currentUser.avatar} width="125px" className='rounded img-thumbnail mt-3' alt="" />
+
             <div className="form-container mx-auto mt-3 p-4">
                 <form action="" method="POST">
+                    <input type='file' ref={fileRef} hidden accept='image/*' />
+                    <img onClick={() => fileRef.current.click()} src={currentUser.avatar} width="125px" className=' img-thumbnail mt-3 profile_img' alt="" />
                     <Input
                         type="text"
                         placeholder="Username"
@@ -51,6 +55,6 @@ export default function Profile() {
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
