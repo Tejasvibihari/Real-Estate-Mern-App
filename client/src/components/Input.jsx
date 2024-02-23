@@ -17,6 +17,6 @@ Input.propTypes = {
     id: PropTypes.string,
     className: PropTypes.string,
     name: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleChange: PropTypes.func,
     label: PropTypes.string
 }
