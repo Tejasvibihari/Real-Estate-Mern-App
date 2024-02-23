@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 
 export default function Header() {
     const { currentUser } = useSelector(state => state.user);
-    // const profileAvatar = (<li className="nav-item">
-    //     <Link to="/profile" className="nav-link"><img src={currentUser.avatar} width="35px" className='rounded'></img></Link></li>)
     const signButton = (<li className="nav-item">
         <Link to="/sign-in" className="nav-link">Sign In</Link>
     </li>)
